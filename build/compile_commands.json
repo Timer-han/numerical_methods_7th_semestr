@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/timerhan/Documents/numerical_methods_7th_semestr/build",
+  "command": "/usr/bin/clang++  -I/home/timerhan/Documents/numerical_methods_7th_semestr/include  -Wall -Wextra -pedantic -g -std=gnu++17 -o CMakeFiles/program.dir/src/main.cpp.o -c /home/timerhan/Documents/numerical_methods_7th_semestr/src/main.cpp",
+  "file": "/home/timerhan/Documents/numerical_methods_7th_semestr/src/main.cpp",
+  "output": "CMakeFiles/program.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/timerhan/Documents/numerical_methods_7th_semestr/build",
+  "command": "/usr/bin/clang++  -I/home/timerhan/Documents/numerical_methods_7th_semestr/include  -Wall -Wextra -pedantic -g -std=gnu++17 -o CMakeFiles/program.dir/src/matrix.cpp.o -c /home/timerhan/Documents/numerical_methods_7th_semestr/src/matrix.cpp",
+  "file": "/home/timerhan/Documents/numerical_methods_7th_semestr/src/matrix.cpp",
+  "output": "CMakeFiles/program.dir/src/matrix.cpp.o"
+}
+]
