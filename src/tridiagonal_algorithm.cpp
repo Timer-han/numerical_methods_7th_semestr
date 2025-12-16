@@ -14,13 +14,13 @@ void tridiagonal_algorithm(
     d_[0] = d[0];
     for (int i = 1; i < n; i++)
     {
-        b_[i] -= a[i] * c[i - 1]  / b_[i - 1];
-        d_[i] -= a[i] * d_[i - 1] / b_[i - 1];
+        b_[i] = b[i] - a[i] * c[i - 1]  / b_[i - 1];
+        d_[i] = d[i] - a[i] * d_[i - 1] / b_[i - 1];
     }
 
     result[n - 1] = d_[n - 1] / b_[n - 1];
     for (int i = n - 2; i >= 0; i--)
-        result[i] = (d_[i] - c[i] * result[i + 1] ) / b_[i];
+        result[i] = (d_[i] - c[i] * result[i + 1]) / b_[i];
 }
 
 

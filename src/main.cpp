@@ -10,6 +10,7 @@ int print_mtrx(std::vector<double> &v)
     for (int i = 0; i < v.size (); i++)
         printf ("%8.2e ", v[i]);
     printf("\n");
+    return 0;
 }
 
 double find_norm (std::vector<double> &v)
@@ -60,15 +61,15 @@ int main(int argc, char **argv)
     double h, t;
     
     
-    for (m = 10; m < 11; m*=10)
+    for (m = 10; m < 100001; m*=10)
     {
-        h = 1. / m;
-        for (tN = 10; tN < 11; tN*= 10)
+        h = 1. / (m - 1);
+        for (tN = 10; tN < 100001; tN*= 10)
         {
             std::vector<double>
                 g(m, 0), v(m, 0), given_g(m, 0), given_v(m, 0),
-                a(m - 1, 0), b(m, 0),
-                c(m - 1, 0), d(m, 0);
+                a(m, 0), b(m, 0),
+                c(m, 0), d(m, 0);
             
             t = 1. / tN;
             find_for_tN(t, h, tN, m, g, v, a, b, c, d);
@@ -82,7 +83,7 @@ int main(int argc, char **argv)
             auto norm_g = find_norm(given_g);
             auto norm_v = find_norm(given_v);
 
-            printf("%6d %6d %8.2e %8.2e", m, tN, norm_g, norm_v);
+            printf("%6d %6d %8.2e %8.2e\n", m, tN, norm_g, norm_v);
         }
     }
     
