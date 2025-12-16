@@ -177,6 +177,54 @@ src/matrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/matrix.cpp.s
 .PHONY : src/matrix.cpp.s
 
+src/matrix_compute.o: src/matrix_compute.cpp.o
+.PHONY : src/matrix_compute.o
+
+# target to build an object file
+src/matrix_compute.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/matrix_compute.cpp.o
+.PHONY : src/matrix_compute.cpp.o
+
+src/matrix_compute.i: src/matrix_compute.cpp.i
+.PHONY : src/matrix_compute.i
+
+# target to preprocess a source file
+src/matrix_compute.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/matrix_compute.cpp.i
+.PHONY : src/matrix_compute.cpp.i
+
+src/matrix_compute.s: src/matrix_compute.cpp.s
+.PHONY : src/matrix_compute.s
+
+# target to generate assembly for a file
+src/matrix_compute.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/matrix_compute.cpp.s
+.PHONY : src/matrix_compute.cpp.s
+
+src/tridiagonal_algorithm.o: src/tridiagonal_algorithm.cpp.o
+.PHONY : src/tridiagonal_algorithm.o
+
+# target to build an object file
+src/tridiagonal_algorithm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/tridiagonal_algorithm.cpp.o
+.PHONY : src/tridiagonal_algorithm.cpp.o
+
+src/tridiagonal_algorithm.i: src/tridiagonal_algorithm.cpp.i
+.PHONY : src/tridiagonal_algorithm.i
+
+# target to preprocess a source file
+src/tridiagonal_algorithm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/tridiagonal_algorithm.cpp.i
+.PHONY : src/tridiagonal_algorithm.cpp.i
+
+src/tridiagonal_algorithm.s: src/tridiagonal_algorithm.cpp.s
+.PHONY : src/tridiagonal_algorithm.s
+
+# target to generate assembly for a file
+src/tridiagonal_algorithm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/program.dir/build.make CMakeFiles/program.dir/src/tridiagonal_algorithm.cpp.s
+.PHONY : src/tridiagonal_algorithm.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +240,12 @@ help:
 	@echo "... src/matrix.o"
 	@echo "... src/matrix.i"
 	@echo "... src/matrix.s"
+	@echo "... src/matrix_compute.o"
+	@echo "... src/matrix_compute.i"
+	@echo "... src/matrix_compute.s"
+	@echo "... src/tridiagonal_algorithm.o"
+	@echo "... src/tridiagonal_algorithm.i"
+	@echo "... src/tridiagonal_algorithm.s"
 .PHONY : help
 
 

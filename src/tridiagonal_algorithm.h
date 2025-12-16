@@ -17,4 +17,4 @@ void tridiagonal_algorithm_mutable(
     std::vector<double> &c, 
     std::vector<double> &d, 
     std::vector<double> &result, 
-    int n);
+    int n); 

@@ -1,24 +1,90 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cmath>
 
-#include "matrix.h"
+#include "matrix_compute.h"
 
-int main (int argc, char** argv) {
-    int n;
-    if (argc != 3)
+int print_mtrx(std::vector<double> &v)
+{
+    for (int i = 0; i < v.size (); i++)
+        printf ("%8.2e ", v[i]);
+    printf("\n");
+}
+
+double find_norm (std::vector<double> &v)
+{
+    double mx = 0;
+    for (int i = 0; i < v.size (); i++)
+        mx = std::max(mx, std::abs(v[i]));
+    return mx;
+}
+
+int find_sub(std::vector<double> &v, std::vector<double> &g)
+{
+    if (v.size () != g.size ())
     {
-        std::cout << "Wrong arguments!\n";
+        std::cout << "Error in find_sub";
         return -1;
     }
 
-    sscanf(argv[1], "%d", &n);
-    std::string fname(argv[2]);
+    for (int i = 0; i < v.size (); i++)
+        v[i] -= g[i];
 
-    matrix m(n);
-    m.read_from_file(fname);
-    m.print();
-    
     return 0;
 }
 
+int get_given_g (std::vector<double> &g, double t){
+    int m = g.size();
+    double h = 1. / (m-1);
+
+    for (int i = 0; i < m; i++)
+        g[i] = std::log(std::exp(t) * (std::cos(3 * M_PI * i * h) + 1.5));
+
+    return 0;
+}
+
+int get_given_v (std::vector<double> &v, double t){
+    int m = v.size();
+    double h = 1. / (m-1);
+
+    for (int i = 0; i < m; i++)
+        v[i] = std::cos(2 * M_PI * t) * std::sin(4 * M_PI * h * i);
+
+    return 0;
+}
+
+int main(int argc, char **argv)
+{
+    int m, tN;
+    double h, t;
+    
+    
+    for (m = 10; m < 11; m*=10)
+    {
+        h = 1. / m;
+        for (tN = 10; tN < 11; tN*= 10)
+        {
+            std::vector<double>
+                g(m, 0), v(m, 0), given_g(m, 0), given_v(m, 0),
+                a(m - 1, 0), b(m, 0),
+                c(m - 1, 0), d(m, 0);
+            
+            t = 1. / tN;
+            find_for_tN(t, h, tN, m, g, v, a, b, c, d);
+
+            get_given_g (given_g, 1);
+            get_given_v (given_v, 1);
+
+            find_sub (given_v, v);
+            find_sub (given_g, g);
+
+            auto norm_g = find_norm(given_g);
+            auto norm_v = find_norm(given_v);
+
+            printf("%6d %6d %8.2e %8.2e", m, tN, norm_g, norm_v);
+        }
+    }
+    
+    return 0;
+}

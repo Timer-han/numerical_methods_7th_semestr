@@ -10,5 +10,17 @@
   "command": "/usr/bin/clang++  -I/home/timerhan/Documents/numerical_methods_7th_semestr/include  -Wall -Wextra -pedantic -g -std=gnu++17 -o CMakeFiles/program.dir/src/matrix.cpp.o -c /home/timerhan/Documents/numerical_methods_7th_semestr/src/matrix.cpp",
   "file": "/home/timerhan/Documents/numerical_methods_7th_semestr/src/matrix.cpp",
   "output": "CMakeFiles/program.dir/src/matrix.cpp.o"
+},
+{
+  "directory": "/home/timerhan/Documents/numerical_methods_7th_semestr/build",
+  "command": "/usr/bin/clang++  -I/home/timerhan/Documents/numerical_methods_7th_semestr/include  -Wall -Wextra -pedantic -g -std=gnu++17 -o CMakeFiles/program.dir/src/matrix_compute.cpp.o -c /home/timerhan/Documents/numerical_methods_7th_semestr/src/matrix_compute.cpp",
+  "file": "/home/timerhan/Documents/numerical_methods_7th_semestr/src/matrix_compute.cpp",
+  "output": "CMakeFiles/program.dir/src/matrix_compute.cpp.o"
+},
+{
+  "directory": "/home/timerhan/Documents/numerical_methods_7th_semestr/build",
+  "command": "/usr/bin/clang++  -I/home/timerhan/Documents/numerical_methods_7th_semestr/include  -Wall -Wextra -pedantic -g -std=gnu++17 -o CMakeFiles/program.dir/src/tridiagonal_algorithm.cpp.o -c /home/timerhan/Documents/numerical_methods_7th_semestr/src/tridiagonal_algorithm.cpp",
+  "file": "/home/timerhan/Documents/numerical_methods_7th_semestr/src/tridiagonal_algorithm.cpp",
+  "output": "CMakeFiles/program.dir/src/tridiagonal_algorithm.cpp.o"
 }
 ]
