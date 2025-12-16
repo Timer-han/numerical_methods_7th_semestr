@@ -3,7 +3,7 @@
 
 #include "tridiagonal_algorithm.h"
 
-constexpr double mu = 0.001;
+constexpr double mu = 0.1;
 
 double get_f () {
     return 0;
@@ -13,7 +13,7 @@ double get_mu_tilde ( std::vector<double> &g, int n_nodes ) {
     double mx = std::exp(-g[0]);
     for (int i = 1; i < n_nodes; ++i)
         mx = std::max(std::exp(-g[i]), mx);
-    return mu * mx; // <-- возвращаем именно tilde_mu = mu * max e^{-g}
+    return mu * mx;
 }
 
 

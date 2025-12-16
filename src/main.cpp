@@ -13,12 +13,29 @@ int print_mtrx(std::vector<double> &v)
     return 0;
 }
 
-double find_norm (std::vector<double> &v)
+double find_norm_c (std::vector<double> &v)
 {
     double mx = 0;
     for (int i = 0; i < v.size (); i++)
         mx = std::max(mx, std::abs(v[i]));
     return mx;
+}
+
+double find_norm (std::vector<double> &v)
+{
+    double mx = 0, h = 1. / (v.size() - 1);
+    for (int i = 0; i < v.size (); i++)
+        mx += v[i] * v[i];
+    return std::sqrt(mx*h);
+}
+
+double find_norm_L2h (std::vector<double> &v)
+{
+    double mx = find_norm(v), h = 1. / (v.size() - 1);
+    mx = mx * mx / h;
+    for (int i = 0; i < v.size (); i++)
+        mx += 0.5 * v[i] * v[i];
+    return std::sqrt(mx*h);
 }
 
 int find_sub(std::vector<double> &v, std::vector<double> &g)
@@ -61,10 +78,10 @@ int main(int argc, char **argv)
     double h, t;
     
     
-    for (m = 10; m < 100001; m*=10)
+    for (m = 10; m < 10001; m*=10)
     {
         h = 1. / (m - 1);
-        for (tN = 10; tN < 100001; tN*= 10)
+        for (tN = 10; tN < 10001; tN*= 10)
         {
             std::vector<double>
                 g(m, 0), v(m, 0), given_g(m, 0), given_v(m, 0),
@@ -80,10 +97,15 @@ int main(int argc, char **argv)
             find_sub (given_v, v);
             find_sub (given_g, g);
 
+            auto normc_g = find_norm_c(given_g);
+            auto normc_v = find_norm_c(given_v);
             auto norm_g = find_norm(given_g);
             auto norm_v = find_norm(given_v);
+            auto norml2h_g = find_norm_L2h(given_g);
+            auto norml2h_v = find_norm_L2h(given_v);
 
-            printf("%6d %6d %8.2e %8.2e\n", m, tN, norm_g, norm_v);
+            printf("%6d %6d %8.2e %8.2e %8.2e %8.2e %8.2e %8.2e\n",
+                m, tN, normc_g, normc_v, norm_g, norm_v, norml2h_g, norml2h_v);
         }
     }
     
