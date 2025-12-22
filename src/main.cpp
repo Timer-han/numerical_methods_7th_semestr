@@ -5,7 +5,7 @@
 
 #include "matrix_compute.h"
 
-int print_mtrx(std::vector<double> &v)
+int print_mtrx(const std::vector<double> &v)
 {
     for (int i = 0; i < v.size (); i++)
         printf ("%8.2e ", v[i]);
@@ -13,7 +13,7 @@ int print_mtrx(std::vector<double> &v)
     return 0;
 }
 
-double find_norm_c (std::vector<double> &v)
+double find_norm_c (const std::vector<double> &v)
 {
     double mx = 0;
     for (int i = 0; i < v.size (); i++)
@@ -21,7 +21,7 @@ double find_norm_c (std::vector<double> &v)
     return mx;
 }
 
-double find_norm (std::vector<double> &v)
+double find_norm (const std::vector<double> &v)
 {
     double mx = 0, h = 1. / (v.size() - 1);
     for (int i = 0; i < v.size (); i++)
@@ -29,13 +29,23 @@ double find_norm (std::vector<double> &v)
     return std::sqrt(mx*h);
 }
 
-double find_norm_L2h (std::vector<double> &v)
+double find_norm_L2h (const std::vector<double> &v)
 {
     double mx = find_norm(v), h = 1. / (v.size() - 1);
     mx = mx * mx / h;
     for (int i = 0; i < v.size (); i++)
         mx += 0.5 * v[i] * v[i];
     return std::sqrt(mx*h);
+}
+
+double find_norm_12 (const std::vector<double> &v)
+{
+    double mx = 0, h = 1. / (v.size () - 1);
+    for (int i = 0; i < v.size () - 1; i++)
+        mx += v[i] * v[i];
+    mx *= h;
+    double L2h = find_norm_L2h(v);
+    return std::sqrt(mx + L2h * L2h);
 }
 
 int find_sub(std::vector<double> &v, std::vector<double> &g)
@@ -78,17 +88,17 @@ int main(int argc, char **argv)
     double h, t;
     
     
-    for (m = 10; m < 10001; m*=10)
+    for (tN = 10; tN < 10001; tN*= 10)
     {
-        h = 1. / (m - 1);
-        for (tN = 10; tN < 10001; tN*= 10)
+        t = 1. / tN;
+        for (m = 10; m < 10001; m*=10)
         {
+            h = 1. / (m - 1);
             std::vector<double>
                 g(m, 0), v(m, 0), given_g(m, 0), given_v(m, 0),
                 a(m, 0), b(m, 0),
                 c(m, 0), d(m, 0);
             
-            t = 1. / tN;
             find_for_tN(t, h, tN, m, g, v, a, b, c, d);
 
             get_given_g (given_g, 1);
